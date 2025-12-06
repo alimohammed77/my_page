@@ -1,0 +1,27 @@
+#socials:
+"https://www.instagram.com/"
+"https://www.linkedin.com/"
+"https://www.github.com/"
+
+#contact:
+whatsApp 
+"https://api.whatsapp.com/send?phone=0123456789&text=Hello, more infotmation!"
+
+Gmail:
+"mailto:example@gmail.com"
+
+Messenger:
+"https://m.me/ExampleName"
+
+telegram:
+"https://t.me/UserName"
+
+
+#Scroll Reveal Anmation =======
+cost sr = scrollReveall({
+    origin:"top",
+    distance: "60px",
+    duration: 2500,
+    delay: 400,
+
+});
