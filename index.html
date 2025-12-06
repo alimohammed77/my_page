@@ -348,6 +348,56 @@
 
 
 
+/* ===== Section: Social Media Designs | Responsive Horizontal Gallery ===== */
+#social-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+}
+
+#social-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+#social-grid::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+.card-img {
+  flex: 0 0 auto;
+  width: 280px;              /* ← حجم ثابت مناسب ومنطقي */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-img img {
+  width: 100%;               /* ← تجعل حجم الصورة مضبوط */
+  height: auto;
+  border-radius: 12px;        /* ← لمسة تصميمية */
+  object-fit: cover;          /* ← يمنع التشويه */
+  transition: transform 0.25s ease;
+}
+
+.card-img img:hover {
+  transform: scale(1.05);     /* ← تأثير بسيط عند المرور */
+}
+
+.img-meta {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+
+
+
+
 
 
 </style>
@@ -922,5 +972,3 @@ document.getElementById('downloadCv').addEventListener('click', (e)=>{
 </script>
 </body>
 </html>
-
-
