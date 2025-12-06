@@ -211,6 +211,145 @@
   .socials .link:hover {
     color: var(--accent);
   }
+
+
+
+/* ========== Horizontal Scroll Style ========== */
+.horizontal-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* منع انكماش الكروت في السطر */
+.horizontal-scroll .card-img {
+  flex: 0 0 auto;
+}
+
+
+
+
+
+/* ===== Horizontal Scroll Hint ===== */
+.scroll-hint {
+  position: absolute;
+  top: -25px;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 14px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  animation: fadeSlide 2s ease forwards;
+}
+
+.scroll-hint .arrow {
+  animation: arrowMove 1.5s infinite ease-in-out;
+  opacity: 0.9;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(50%) translateY(0px); }
+}
+
+@keyframes arrowMove {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Hide after scroll */
+.scroll-hint.hide {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Position container */
+.section-relative {
+  position: relative;
+}
+
+
+
+
+/* ==== Horizontal Scroll Arrows ==== */
+.scroll-arrows {
+  position: relative;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: #fff;
+  background: rgba(0,0,0,0.45);
+  padding: 8px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0.9;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease;
+  animation: pulseArrow 1.5s infinite ease-in-out;
+}
+
+.scroll-arrow:hover {
+  opacity: 1;
+}
+
+.scroll-arrow.left {
+  left: -12px;
+}
+
+.scroll-arrow.right {
+  right: -12px;
+}
+
+@keyframes pulseArrow {
+  0% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.15); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+/* Hide arrows */
+.hide-arrows .scroll-arrow {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -315,7 +454,7 @@
 
     <div class="intro">
       <h2>أعمالي — معرض تصاميمي </h2>
-      <p>مرحبًا، هذه صفحة محفظة الأعمال الخاصة بي. يمكنك تصفّح الأقسام أدناه. اضغط على أي صورة لتكبيرها بالحجم الكامل. الصور تُحمَّل تدريجيًا كي تعمل بسرعة حتى على الإنترنت البطيء.</p>
+      <p>مرحبًا، انا علي مصمم جرافيك ومطور صفحات الويب ومهندس شبكات هذه صفحة محفظة الأعمال الخاصة بي. يمكنك تصفّح الأقسام أدناه. اضغط على أي صورة لتكبيرها بالحجم الكامل. الصور تُحمَّل تدريجيًا كي تعمل بسرعة حتى على الإنترنت البطيء.</p>
       <div style="margin-top:12px;display:flex;gap:8px">
         <a class="btn" href="#web">اطلع على تصاميم الويب</a>
         <button class="btn ghost" id="toggleAllCollapse">إظهار/إخفاء كل الأقسام</button>
@@ -338,6 +477,7 @@
         <li>تصاميـــم سوشيال ميديا — اعلانات — مطبوعات — بوسترات — تقارير — بروشور</li>  
         <li> تصاميــــم الويب  HTML / CSS / JavaScript  </li>
         <li> تصاميـــــم الشعـــــارات </li>
+        <li> تركيــب وبرمجــة وتسديــد باقــات شبكــة ستارلينـــك الفضائيــة </li>
         <!-- <li>React (أساسيات)</li> -->
        <!--    <li>Figma — تصميم واجهات وتصدير موارد</li> -->
       <!--     <li>PHP — قواعد بيانات MySQL</li>  -->
@@ -345,9 +485,38 @@
     </div>
   </section>
 
+
+    <!-- ===== Section: Social Media Designs  ===== -->
+  <section id="social" class="port-section reveal section-relative">
+    <div class="section-head">
+      <h3>تصاميم السوشيال ميديا</h3> <br>
+      <div class="section-controls">
+        <button class="collapse-btn" data-toggle="#social-grid">إظهار/إخفاء</button>
+      </div>
+    </div>
+    
+
+    <div id="social-grid" class="grid horizontal-scroll" style="margin-top:12px">
+      
+      <script>
+
+      </script>
+      
+      <figure class="card-img"><span class="img-meta">social1.jpg</span><img class="lazy" data-src="assets/images/social1-thumb.PNG" data-full="assets/images/social1-thumb.PNG" alt="social1" loading="lazy"></figure>
+      <figure class="card-img"><span class="img-meta">social2.jpg</span><img class="lazy" data-src="assets/images/social2-thumb.PNG" data-full="assets/images/social2-thumb.PNG" alt="social2" loading="lazy"></figure>
+      <figure class="card-img"><span class="img-meta">social3.jpg</span><img class="lazy" data-src="assets/images/social3-thumb.PNG" data-full="assets/images/social3-thumb.PNG" alt="social3" loading="lazy"></figure>
+      <figure class="card-img"><span class="img-meta">social4.jpg</span><img class="lazy" data-src="assets/images/social4-thumb.PNG" data-full="assets/images/social4-thumb.PNG" alt="social4" loading="lazy"></figure>
+      <figure class="card-img"><span class="img-meta">social5.jpg</span><img class="lazy" data-src="assets/images/social5-thumb.PNG" data-full="assets/images/social5-thumb.PNG" alt="social5" loading="lazy"></figure>
+
+    </div>
+  </section>
+
+
+
+
   <!-- ===== Section: Web Designs ===== -->
     <!--
-  <section id="web" class="port-section reveal">
+  <section id="web" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>تصاميم ويب</h3>
       <div class="section-controls">
@@ -385,33 +554,10 @@
     -->
 
 
-  <!-- ===== Section: Social Media Designs  ===== -->
-  <section id="social" class="port-section reveal">
-    <div class="section-head">
-      <h3>تصاميم السوشيال ميديا</h3>
-      <div class="section-controls">
-        <button class="collapse-btn" data-toggle="#social-grid">إظهار/إخفاء</button>
-      </div>
-    </div>
-
-    <div id="social-grid" class="grid" style="margin-top:12px">
-      
-      <script>
-
-      </script>
-      
-      <figure class="card-img"><span class="img-meta">social1.jpg</span><img class="lazy" data-src="assets/images/social1-thumb.PNG" data-full="assets/images/social1-thumb.PNG" alt="social1" loading="lazy"></figure>
-      <figure class="card-img"><span class="img-meta">social2.jpg</span><img class="lazy" data-src="assets/images/social2-thumb.PNG" data-full="assets/images/social2-thumb.PNG" alt="social2" loading="lazy"></figure>
-      <figure class="card-img"><span class="img-meta">social3.jpg</span><img class="lazy" data-src="assets/images/social3-thumb.PNG" data-full="assets/images/social3-thumb.PNG" alt="social3" loading="lazy"></figure>
-      <figure class="card-img"><span class="img-meta">social4.jpg</span><img class="lazy" data-src="assets/images/social4-thumb.PNG" data-full="assets/images/social4-thumb.PNG" alt="social4" loading="lazy"></figure>
-      <figure class="card-img"><span class="img-meta">social5.jpg</span><img class="lazy" data-src="assets/images/social5-thumb.PNG" data-full="assets/images/social5-thumb.PNG" alt="social5" loading="lazy"></figure>
-
-    </div>
-  </section>
 
   <!-- ===== Section: Print Designs  ===== -->
     <!--
-  <section id="print" class="port-section reveal">
+  <section id="print" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>تصاميم مطبوعات</h3>
       <div class="section-controls">
@@ -419,7 +565,7 @@
       </div>
     </div>
 
-    <div id="print-grid" class="grid" style="margin-top:12px">
+    <div id="print-grid" class="grid horizontal-scroll" style="margin-top:12px">
       <figure class="card-img"><span class="img-meta">print1.jpg</span><img class="lazy" data-src="assets/images/print1-thumb.jpg" data-full="assets/images/print1-full.jpg" alt="print1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">print2.jpg</span><img class="lazy" data-src="assets/images/print2-thumb.jpg" data-full="assets/images/print2-full.jpg" alt="print2" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">print3.jpg</span><img class="lazy" data-src="assets/images/print3-thumb.jpg" data-full="assets/images/print3-full.jpg" alt="print3" loading="lazy"></figure>
@@ -432,7 +578,7 @@
 
   <!-- ===== Section: Reports  ===== -->
     <!--
-  <section id="reports" class="port-section reveal">
+  <section id="reports" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>تصاميم تقارير</h3>
       <div class="section-controls">
@@ -440,7 +586,7 @@
       </div>
     </div>
 
-    <div id="reports-grid" class="grid" style="margin-top:12px">
+    <div id="reports-grid" class="grid horizontal-scroll" style="margin-top:12px">
       <figure class="card-img"><span class="img-meta">report1.jpg</span><img class="lazy" data-src="assets/images/report1-thumb.jpg" data-full="assets/images/report1-full.jpg" alt="report1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">report2.jpg</span><img class="lazy" data-src="assets/images/report2-thumb.jpg" data-full="assets/images/report2-full.jpg" alt="report2" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">report3.jpg</span><img class="lazy" data-src="assets/images/report3-thumb.jpg" data-full="assets/images/report3-full.jpg" alt="report3" loading="lazy"></figure>
@@ -453,7 +599,7 @@
 
   <!-- ===== Section: Cards  ===== -->
     <!--
-  <section id="cards" class="port-section reveal">
+  <section id="cards" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>تصاميم كروت</h3>
       <div class="section-controls">
@@ -461,7 +607,7 @@
       </div>
     </div>
 
-    <div id="cards-grid" class="grid" style="margin-top:12px">
+    <div id="cards-grid" class="grid horizontal-scroll" style="margin-top:12px">
    
       <figure class="card-img"><span class="img-meta">card1.jpg</span><img class="lazy" data-src="assets/images/card1-thumb.jpg" data-full="assets/images/card1-full.jpg" alt="card1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">card2.jpg</span><img class="lazy" data-src="assets/images/card2-thumb.jpg" data-full="assets/images/card2-full.jpg" alt="card2" loading="lazy"></figure>
@@ -480,7 +626,7 @@
   
   <!-- ===== Section: Greeting  ===== -->
     <!--
-  <section id="greeting" class="port-section reveal">
+  <section id="greeting" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>تهاني وبطاقات</h3>
       <div class="section-controls">
@@ -488,7 +634,7 @@
       </div>
     </div>
 
-    <div id="greeting-grid" class="grid" style="margin-top:12px">
+    <div id="greeting-grid" class="grid horizontal-scroll" style="margin-top:12px">
       <figure class="card-img"><span class="img-meta">g1.jpg</span><img class="lazy" data-src="assets/images/g1-thumb.jpg" data-full="assets/images/g1-full.jpg" alt="g1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">g2.jpg</span><img class="lazy" data-src="assets/images/g2-thumb.jpg" data-full="assets/images/g2-full.jpg" alt="g2" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">g3.jpg</span><img class="lazy" data-src="assets/images/g3-thumb.jpg" data-full="assets/images/g3-full.jpg" alt="g3" loading="lazy"></figure>
@@ -500,7 +646,7 @@
 
   <!-- ===== Section: Ads  ===== -->
     <!--
-  <section id="ads" class="port-section reveal">
+  <section id="ads" class="port-section reveal section-relative">
     <div class="section-head">
       <h3>إعلانات</h3>
       <div class="section-controls">
@@ -508,7 +654,7 @@
       </div>
     </div>
 
-    <div id="ads-grid" class="grid" style="margin-top:12px">
+    <div id="ads-grid" class="grid horizontal-scroll" style="margin-top:12px">
       <figure class="card-img"><span class="img-meta">ad1.jpg</span><img class="lazy" data-src="assets/images/ad1-thumb.jpg" data-full="assets/images/ad1-full.jpg" alt="ad1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">ad2.jpg</span><img class="lazy" data-src="assets/images/ad2-thumb.jpg" data-full="assets/images/ad2-full.jpg" alt="ad2" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">ad3.jpg</span><img class="lazy" data-src="assets/images/ad3-thumb.jpg" data-full="assets/images/ad3-full.jpg" alt="ad3" loading="lazy"></figure>
@@ -529,7 +675,7 @@
       </div>
     </div>
 
-    <div id="logos-grid" class="grid" style="margin-top:12px">
+    <div id="logos-grid" class="grid horizontal-scroll" style="margin-top:12px">
       <figure class="card-img"><span class="img-meta">logo1.jpg</span><img class="lazy" data-src="assets/images/logo1-thumb.jpg" data-full="assets/images/logo1-full.jpg" alt="logo1" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">logo2.jpg</span><img class="lazy" data-src="assets/images/logo2-thumb.jpg" data-full="assets/images/logo2-full.jpg" alt="logo2" loading="lazy"></figure>
       <figure class="card-img"><span class="img-meta">logo3.jpg</span><img class="lazy" data-src="assets/images/logo3-thumb.jpg" data-full="assets/images/logo3-full.jpg" alt="logo3" loading="lazy"></figure>
@@ -771,11 +917,7 @@ document.getElementById('downloadCv').addEventListener('click', (e)=>{
 });
 
 /* =========================
-   Notes:
-   - استبدل كل data-src و data-full بالصور الحقيقية داخل assets/images/
-   - استخدم صور Thumbnail صغيرة الحجم للـ-*-thumb.jpg (مثلاً 400px عرض)
-   - استخدم صور Full أكبر للـ-*-full.jpg (مثلاً 1400-2000px)
-   - لتحسين الأداء أكثر: حضر صيغ webp وserve عبر CDN
+  
    ========================= */
 </script>
 </body>
